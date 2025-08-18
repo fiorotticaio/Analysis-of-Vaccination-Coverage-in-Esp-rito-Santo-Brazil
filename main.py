@@ -1,5 +1,10 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+from plots_brazil import plot_vaccination_coverage
+
+plot_vaccination_coverage()
+
+
 
 # Importar arquivos
 df_vac = pd.read_csv("./data/vaccination_coverage.csv")
@@ -10,25 +15,6 @@ print(df_vac.head())
 print(df_cases.head())
 
 
-
-
-
-# Médias nacionais por ano
-mean_vac = df_vac[['2021', '2022', '2023']].mean()
-
-# Dados do ES
-es_vac = df_vac[df_vac['uf'] == 'Espírito Santo'].iloc[0, 1:]
-
-plt.figure(figsize=(10,6))
-plt.plot(mean_vac.index, mean_vac.values, marker='o', label='Brasil (média)')
-plt.plot(es_vac.index, es_vac.values, marker='o', label='Espírito Santo', linewidth=3)
-
-plt.title("Cobertura Vacinal Tríplice Viral (2021-2023)", fontsize=16)
-plt.ylabel("Cobertura (%)")
-plt.xlabel("Ano")
-plt.legend()
-plt.grid(True, linestyle='--', alpha=0.7)
-plt.show()
 
 
 
