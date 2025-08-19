@@ -2,39 +2,109 @@
 
 ## Introduction
 
-This project investigates the decline in vaccination coverage against exanthematous diseases in different regions of Espírito Santo, Brazil, between 2021 and 2023, with a focus on the MMR (Measles, Mumps, and Rubella) vaccine. The reduction in vaccination rates has contributed to a growing number of cases, hospitalizations, and deaths, especially from Measles and Rubella, representing a setback in Brazil's previous achievements in immunization. These diseases are viral, highly contagious, and frequently encountered in medical practice, particularly among the pediatric population, posing significant public health challenges.
+This project investigates vaccination coverage against exanthematous diseases in different regions of Espírito Santo, Brazil, between 2021 and 2023, focusing on the MMR vaccine (measles, mumps, and rubella).  
+These diseases are viral, highly contagious, and frequently encountered in medical practice, particularly among pediatric patients, posing significant public health challenges.
 
 ## Objectives
 
-The main objective is to analyze the reduction in vaccination coverage for vaccine-preventable exanthematous diseases, focusing on Measles and Rubella, in Espírito Santo. The analysis will consider age groups and regional profiles, and will relate the decline in coverage to the increase in the number of cases of these diseases.
+The main objective is to analyze vaccination coverage for vaccine-preventable rash diseases, focusing on measles and rubella, in Brazil and Espírito Santo.  
+The analysis considers regional profiles and seeks to relate the decline in coverage to the increase in the number of confirmed cases.
 
 ## Methodology
 
-This is a retrospective, quantitative, and descriptive study, to be conducted between the second half of 2024 and the first half of 2025. Data collection will be performed using the following sources:
-- Vacina e Confia database
-- Espírito Santo State Health Department (SESA)
-- DATASUS
+This is a retrospective, quantitative, and descriptive study covering the years 2021, 2022, and 2023.  
+Data were collected from the following sources:
+- **DATASUS**
+- **Tabnet**
 
-The study will cover cases from 2021 to 2023. The analysis will include the distribution of exanthematous disease cases and corresponding vaccination coverage, considering variations by age group and regional profile.
+The analyses were implemented in **Python**, using libraries such as:
+- `pandas` for data manipulation
+- `matplotlib` for visualization
 
-## Project Structure
+---
 
-- Data collection and preprocessing scripts
-- Statistical analysis and visualization notebooks
-- Documentation and results
+## Data Structure
 
-## Requirements
+The dataset is organized into three `.csv` files located in the `data/` folder:
 
-- Python 3.x
-- Pandas, NumPy, Matplotlib, Seaborn (for data analysis and visualization)
-- Jupyter Notebook (recommended for running analysis)
+### 1. `vaccination_coverage_brazil.csv`
+```csv
+uf,2021,2022,2023
+Rondônia,42.14,48.34,60.54
+Acre,25.95,37.33,42.71
+Amazonas,44.70,48.78,52.62
+...
+```
 
-## How to Run
+### 2. `vaccination_coverage_es.csv`
+```csv
+city,2021,2022,2023
+AFONSO CLAUDIO,51.32,73.23,93.41
+AGUIA BRANCA,19.84,66.67,75.16
+AGUA DOCE DO NORTE,62.63,40.98,90.12
+...
+```
 
-1. Clone this repository.
-2. Install the required dependencies.
-3. Run the analysis notebooks or scripts as described in the documentation.
+### 3. `confirmed_cases_brazil.csv`
+```csv
+uf,2021,2022,2023
+Rondônia,0,2,0
+Acre,0,0,0
+Amazonas,0,0,0
+...
+```
 
-## License
+---
 
-This project is licensed under the MIT License.
+## Results
+
+Below are the main figures summarizing the analysis. All images are available in the `figures/` folder.
+
+### National Overview
+
+**Vaccination Coverage in Brazil (2021-2023)**
+<p align="center">
+    <img src="./figures/coverage_brazil.png" width="45%">
+</p>
+
+**Confirmed Cases in Brazil (2021-2023)**
+<p align="center">
+    <img src="./figures/cases_brazil.png" width="45%">
+</p>
+
+**Coverage vs. Cases in Brazil**
+<p align="center">
+    <img src="./figures/coverage_x_cases_brazil.png" width="45%">
+</p>
+
+---
+
+### Espírito Santo Overview
+
+**Vaccination Coverage in Espírito Santo (2021-2023)**
+<p align="center">
+    <img src="./figures/coverage_es.png" width="45%">
+</p>
+
+---
+
+### Espírito Santo Cities by Year
+
+**Coverage by City (2021)**
+<p align="center">
+    <img src="./figures/coverage_cities_es_2021.png" width="45%">
+</p>
+
+**Coverage by City (2022)**
+<p align="center">
+    <img src="./figures/coverage_cities_es_2022.png" width="45%">
+</p>
+
+**Coverage by City (2023)**
+<p align="center">
+    <img src="./figures/coverage_cities_es_2023.png" width="45%">
+</p>
+
+
+
+

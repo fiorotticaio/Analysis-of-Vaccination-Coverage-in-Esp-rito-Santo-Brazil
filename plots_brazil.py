@@ -17,7 +17,7 @@ def save_figure(filename: str, dpi: int = 300):
 
 
 def plot_vaccination_coverage_brazil():
-    df_vac = pd.read_csv("./data/vaccination_coverage.csv")
+    df_vac = pd.read_csv("./data/vaccination_coverage_brazil.csv")
 
     mean_vac = df_vac[['2021', '2022', '2023']].mean()
     es_vac = df_vac[df_vac['uf'] == 'Espírito Santo'].iloc[0, 1:]
@@ -27,19 +27,19 @@ def plot_vaccination_coverage_brazil():
     plt.figure(figsize=(15, 8))
 
     plt.axhspan(95, 100, color='lightgreen', alpha=0.3)
-    plt.text(2.11, 96, 'Faixa ideal', color='green',
+    plt.text(2.11, 96, 'Ideal range', color='green',
              fontsize=FONT_TEXT, fontweight='bold')
 
     plt.plot(mean_vac.index, mean_vac.values,
              marker='o', markersize=MARKER_SIZE, linewidth=LINE_WIDTH,
-             label='Brasil', color='gray')
+             label='Brazil', color='gray')
     plt.plot(es_vac.index, es_vac.values,
              marker='o', markersize=MARKER_SIZE, linewidth=LINE_WIDTH,
              label='Espírito Santo', color='blue')
 
-    plt.title("Cobertura Vacinal Tríplice Viral no Brasil (2021–2023)", fontsize=FONT_TITLE)
-    plt.xlabel("Ano", fontsize=FONT_AXES)
-    plt.ylabel("Cobertura (%)", fontsize=FONT_AXES)
+    plt.title("MMR Vaccination Coverage in Brazil (2021–2023)", fontsize=FONT_TITLE)
+    plt.xlabel("Year", fontsize=FONT_AXES)
+    plt.ylabel("Coverage (%)", fontsize=FONT_AXES)
 
     yticks = list(range(0, 100, 10)) + [95] + [100]
     yticks = sorted(set(yticks))
@@ -50,12 +50,12 @@ def plot_vaccination_coverage_brazil():
     plt.legend(fontsize=FONT_LEGEND)
     plt.grid(True, linestyle='--', alpha=0.7)
 
-    save_figure("./figures/cobertura_brasil.png")
-    plt.show()
+    save_figure("./figures/coverage_brazil.png")
+    # plt.show()
 
 
 def plot_cases_brazil():
-    df_cases = pd.read_csv("./data/confirmed_cases.csv")
+    df_cases = pd.read_csv("./data/confirmed_cases_brazil.csv")
 
     mean_cases = df_cases[['2021', '2022', '2023']].mean()
 
@@ -70,26 +70,26 @@ def plot_cases_brazil():
 
     plt.plot(mean_cases.index, mean_cases.values,
              marker='o', markersize=MARKER_SIZE, linewidth=LINE_WIDTH,
-             label='Brasil', color=color_brasil)
+             label='Brazil', color=color_brasil)
     plt.plot(es_cases.index, es_cases.values,
              marker='o', markersize=MARKER_SIZE, linewidth=LINE_WIDTH,
              label='Espírito Santo', color=color_es)
 
-    plt.title("Casos Confirmados de Sarampo/Rubéola no Brasil (2021-2023)", fontsize=FONT_TITLE)
-    plt.ylabel("Casos Confirmados", fontsize=FONT_AXES)
-    plt.xlabel("Ano", fontsize=FONT_AXES)
+    plt.title("Confirmed Cases of Measles/Rubella in Brazil (2021-2023)", fontsize=FONT_TITLE)
+    plt.ylabel("Confirmed cases", fontsize=FONT_AXES)
+    plt.xlabel("Year", fontsize=FONT_AXES)
     plt.xticks(fontsize=FONT_TICKS)
     plt.yticks(fontsize=FONT_TICKS)
     plt.grid(True, linestyle='--', alpha=0.7)
     plt.legend(fontsize=FONT_LEGEND)
 
-    save_figure("./figures/casos_brasil.png")
-    plt.show()
+    save_figure("./figures/cases_brazil.png")
+    # plt.show()
 
 
 def plot_cases_vs_vaccination_brazil():
-    df_vac = pd.read_csv("./data/vaccination_coverage.csv")
-    df_cases = pd.read_csv("./data/confirmed_cases.csv")
+    df_vac = pd.read_csv("./data/vaccination_coverage_brazil.csv")
+    df_cases = pd.read_csv("./data/confirmed_cases_brazil.csv")
 
     df_cases['total'] = df_cases[['2021', '2022', '2023']].sum(axis=1)
     df_vac['media'] = df_vac[['2021', '2022', '2023']].mean(axis=1)
@@ -113,12 +113,12 @@ def plot_cases_vs_vaccination_brazil():
         else:
             plt.scatter(row['media'], row['total'], s=200, alpha=0.7, color='gray', zorder=1)
 
-    plt.xlabel("Cobertura Vacinal Média 2021-2023 (%)", fontsize=FONT_AXES)
-    plt.ylabel("Casos Confirmados 2021-2023", fontsize=FONT_AXES)
+    plt.xlabel("Average Vaccination Coverage 2021-2023 (%)", fontsize=FONT_AXES)
+    plt.ylabel("Confirmed Cases 2021-2023", fontsize=FONT_AXES)
     plt.xticks(fontsize=FONT_TICKS)
     plt.yticks(fontsize=FONT_TICKS)
-    plt.title("Cobertura Vacinal vs Casos Confirmados por Estado", fontsize=FONT_TITLE)
+    plt.title("Vaccination Coverage X Confirmed Cases by State", fontsize=FONT_TITLE)
     plt.grid(True, linestyle='--', alpha=0.7)
 
-    save_figure("./figures/coberturaXcasos_brasil.png")
-    plt.show()
+    save_figure("./figures/coverage_x_cases_brazil.png")
+    # plt.show()

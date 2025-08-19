@@ -45,7 +45,7 @@ def plot_vaccination_coverage_es():
     plt.figure(figsize=(15, 8))
 
     plt.axhspan(95, 100, color='lightgreen', alpha=0.3)
-    plt.text(2.11, 96, 'Faixa ideal', color='green',
+    plt.text(2.11, 96, 'Ideal range', color='green',
              fontsize=FONT_TEXT, fontweight='bold')
 
     plt.plot(mean_es.index, mean_es.values,
@@ -62,9 +62,9 @@ def plot_vaccination_coverage_es():
                  marker='o', markersize=MARKER_SIZE, linewidth=LINE_WIDTH,
                  label=mun_low_name.capitalize(), color='orange')
 
-    plt.title("Cobertura Vacinal Tríplice Viral no Espírito Santo (2021–2023)", fontsize=FONT_TITLE)
-    plt.xlabel("Ano", fontsize=FONT_AXES)
-    plt.ylabel("Cobertura (%)", fontsize=FONT_AXES)
+    plt.title("Triple Viral Vaccination Coverage in Espírito Santo (2021–2023)", fontsize=FONT_TITLE)
+    plt.xlabel("Year", fontsize=FONT_AXES)
+    plt.ylabel("Coverage (%)", fontsize=FONT_AXES)
 
     yticks = list(range(0, 100, 10)) + [95] + [100]
     yticks = sorted(set(yticks))
@@ -75,8 +75,8 @@ def plot_vaccination_coverage_es():
     plt.legend(fontsize=FONT_LEGEND)
     plt.grid(True, linestyle='--', alpha=0.7)
 
-    save_figure("./figures/cobertura_es.png")
-    plt.show()
+    save_figure("./figures/coverage_es.png")
+    # plt.show()
 
 
 def plot_coverage_es_cities_es(year: str):
@@ -91,9 +91,9 @@ def plot_coverage_es_cities_es(year: str):
     plt.bar(df_es_year['city'], df_es_year[year], color=colors, width=0.8)
 
     plt.axhline(95, color='blue', linestyle='--', linewidth=LINE_WIDTH)
-    plt.text(len(df_es_year)-10, 98, 'Meta 95%', color='blue', fontsize=FONT_TEXT, fontweight='bold')
+    plt.text(len(df_es_year)-10, 98, 'Target 95%', color='blue', fontsize=FONT_TEXT, fontweight='bold')
 
-    plt.ylabel("Cobertura (%)", fontsize=FONT_AXES)
+    plt.ylabel("Coverage (%)", fontsize=FONT_AXES)
 
     x_ticks = df_es_year['city']
     x_colors = ['limegreen' if v >= 95 else 'firebrick' for v in df_es_year[year]]
@@ -103,10 +103,10 @@ def plot_coverage_es_cities_es(year: str):
         tick.set_color(color)
 
     plt.yticks(fontsize=FONT_TICKS)
-    plt.title(f"Cobertura Vacinal Tríplice Viral por Município do ES ({year})", fontsize=FONT_TITLE)
+    plt.title(f"Triple Viral Vaccination Coverage by Municipality in ES ({year})", fontsize=FONT_TITLE)
 
     plt.grid(axis='y', linestyle='--', alpha=0.7)
 
-    save_figure(f"./figures/cobertura_cidades_es_{year}.png")
+    save_figure(f"./figures/coverage_cities_es_{year}.png")
     # plt.show()
 
