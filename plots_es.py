@@ -72,9 +72,34 @@ def plot_vaccination_coverage_es():
     plt.show()
 
 
+def plot_coverage_es_cities_es(year: str):
+    df_es = pd.read_csv("./data/vaccination_coverage_es.csv")
 
+    df_es_year = df_es[['city', year]].sort_values(by=year, ascending=False)
 
+    mpl.rcParams['font.family'] = 'Times New Roman'
+    plt.figure(figsize=(16, 6))
 
+    colors = ['green' if v >= 95 else 'red' for v in df_es_year[year]]
+    plt.bar(df_es_year['city'], df_es_year[year], color=colors, width=0.8)
 
+    plt.axhline(95, color='blue', linestyle='--', linewidth=LINE_WIDTH)
+    plt.text(len(df_es_year)-10, 98, 'Meta 95%', color='blue', fontsize=FONT_TEXT, fontweight='bold')
 
+    plt.ylabel("Cobertura (%)", fontsize=FONT_AXES)
+
+    x_ticks = df_es_year['city']
+    x_colors = ['limegreen' if v >= 95 else 'firebrick' for v in df_es_year[year]]
+
+    ticks = plt.xticks(ticks=range(len(x_ticks)), labels=x_ticks, rotation=90, fontsize=15)[1]
+    for tick, color in zip(ticks, x_colors):
+        tick.set_color(color)
+
+    plt.yticks(fontsize=FONT_TICKS)
+    plt.title(f"Cobertura Vacinal Tríplice Viral por Município do ES ({year})", fontsize=FONT_TITLE)
+
+    plt.grid(axis='y', linestyle='--', alpha=0.7)
+
+    plt.subplots_adjust(bottom=0.30)
+    plt.show()
 

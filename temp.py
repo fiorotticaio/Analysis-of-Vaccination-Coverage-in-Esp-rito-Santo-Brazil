@@ -1,24 +1,3 @@
-df_es = pd.read_csv("./data/vaccination_coverage_es.csv")
-
-
-df_es_2023 = df_es[['city','2022']].sort_values(by='2022', ascending=False)
-
-plt.figure(figsize=(12,6))
-
-# Pintar barras de acordo com a meta (verde acima, vermelho abaixo)
-colors = ['green' if v >= 95 else 'red' for v in df_es_2023['2022']]
-
-bars = plt.bar(df_es_2023['city'], df_es_2023['2022'], color=colors)
-
-# Linha de meta em 95%
-plt.axhline(95, color='blue', linestyle='--', linewidth=2, label='Meta 95%')
-
-plt.xticks(rotation=90)
-plt.ylabel("Cobertura (%)")
-plt.title("Cobertura Vacinal Tríplice Viral por Município do ES (2021)")
-plt.legend()
-plt.show()
-
 
 
 
