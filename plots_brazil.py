@@ -49,6 +49,39 @@ def plot_vaccination_coverage():
     plt.show()
 
 
+def plot_cases():
+    df_cases = pd.read_csv("./data/confirmed_cases.csv")
+
+    mean_cases = df_cases[['2021', '2022', '2023']].mean()
+
+    es_cases = df_cases[df_cases['uf'] == 'Espírito Santo'].iloc[0, 1:]
+
+    mpl.rcParams['font.family'] = 'Times New Roman'
+
+    color_brasil = 'darkorange'
+    color_es = 'purple'
+
+    plt.figure(figsize=(10, 6))
+
+    plt.plot(mean_cases.index, mean_cases.values,
+             marker='o', markersize=MARKER_SIZE, linewidth=LINE_WIDTH,
+             label='Brasil', color=color_brasil)
+    plt.plot(es_cases.index, es_cases.values,
+             marker='o', markersize=MARKER_SIZE, linewidth=LINE_WIDTH,
+             label='Espírito Santo', color=color_es)
+
+    plt.title("Casos Confirmados de Sarampo/Rubéola (2021-2023)", fontsize=FONT_TITLE)
+    plt.ylabel("Casos Confirmados", fontsize=FONT_AXES)
+    plt.xlabel("Ano", fontsize=FONT_AXES)
+    plt.xticks(fontsize=FONT_TICKS)
+    plt.yticks(fontsize=FONT_TICKS)
+    plt.grid(True, linestyle='--', alpha=0.7)
+    plt.legend(fontsize=FONT_LEGEND)
+
+    plt.tight_layout()
+    plt.show()
+
+
 def plot_cases_vs_vaccination():
     df_vac = pd.read_csv("./data/vaccination_coverage.csv")
     df_cases = pd.read_csv("./data/confirmed_cases.csv")
