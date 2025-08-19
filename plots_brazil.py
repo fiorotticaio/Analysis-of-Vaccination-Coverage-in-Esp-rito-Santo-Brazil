@@ -10,6 +10,7 @@ FONT_TEXT = 24
 LINE_WIDTH = 4
 MARKER_SIZE = 14
 
+
 def plot_vaccination_coverage():
     df_vac = pd.read_csv("./data/vaccination_coverage.csv")
 
@@ -42,6 +43,43 @@ def plot_vaccination_coverage():
 
     plt.ylim(0, 105)
     plt.legend(fontsize=FONT_LEGEND)
+    plt.grid(True, linestyle='--', alpha=0.7)
+
+    plt.tight_layout()
+    plt.show()
+
+
+def plot_cases_vs_vaccination():
+    df_vac = pd.read_csv("./data/vaccination_coverage.csv")
+    df_cases = pd.read_csv("./data/confirmed_cases.csv")
+
+    df_cases['total'] = df_cases[['2021', '2022', '2023']].sum(axis=1)
+    df_vac['media'] = df_vac[['2021', '2022', '2023']].mean(axis=1)
+
+    df_merge = df_vac[['uf', 'media']].merge(df_cases[['uf', 'total']], on='uf')
+
+    mpl.rcParams['font.family'] = 'Times New Roman'
+
+    plt.figure(figsize=(12, 8))
+
+    destaque_ufs = ['Amapá', 'Pará', 'Acre', 'Espírito Santo']
+
+    for _, row in df_merge.iterrows():
+        if row['uf'] == 'Espírito Santo':
+            plt.scatter(row['media'], row['total'], color='red', s=200, label='Espírito Santo',
+                        edgecolor='black', zorder=3)
+            plt.text(row['media'] + 0.5, row['total'] - 25, row['uf'], fontsize=FONT_TEXT, fontweight='bold', color='red')
+        elif row['uf'] in destaque_ufs:
+            plt.scatter(row['media'], row['total'], color='blue', s=200, zorder=2)
+            plt.text(row['media'] + 0.5, row['total'] + 0.2, row['uf'], fontsize=FONT_TEXT, fontweight='bold', color='blue')
+        else:
+            plt.scatter(row['media'], row['total'], s=200, alpha=0.7, color='gray', zorder=1)
+
+    plt.xlabel("Cobertura Vacinal Média 2021-2023 (%)", fontsize=FONT_AXES)
+    plt.ylabel("Casos Confirmados 2021-2023", fontsize=FONT_AXES)
+    plt.xticks(fontsize=FONT_TICKS)
+    plt.yticks(fontsize=FONT_TICKS)
+    plt.title("Cobertura Vacinal vs Casos Confirmados por Estado", fontsize=FONT_TITLE)
     plt.grid(True, linestyle='--', alpha=0.7)
 
     plt.tight_layout()
