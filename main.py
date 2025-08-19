@@ -1,16 +1,16 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-from plots_brazil import plot_vaccination_coverage, plot_cases, plot_cases_vs_vaccination
+from plots_brazil import plot_vaccination_coverage_brazil, plot_cases_brazil, plot_cases_vs_vaccination_brazil
+from plots_es import plot_vaccination_coverage_es
 
-# plot_vaccination_coverage()
-plot_cases()
-# plot_cases_vs_vaccination()
+# plot_vaccination_coverage_brazil()
+# plot_cases_brazil()
+# plot_cases_vs_vaccination_brazil()
+
+# plot_vaccination_coverage_es()
 
 
 
-
-df_vac = pd.read_csv("./data/vaccination_coverage.csv")
-df_cases = pd.read_csv("./data/confirmed_cases.csv")
 
 
 

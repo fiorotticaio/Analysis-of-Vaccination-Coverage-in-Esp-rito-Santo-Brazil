@@ -1,6 +1,6 @@
 import pandas as pd
-import matplotlib.pyplot as plt
 import matplotlib as mpl
+import matplotlib.pyplot as plt
 
 FONT_TITLE = 28
 FONT_AXES = 24
@@ -11,7 +11,7 @@ LINE_WIDTH = 4
 MARKER_SIZE = 14
 
 
-def plot_vaccination_coverage():
+def plot_vaccination_coverage_brazil():
     df_vac = pd.read_csv("./data/vaccination_coverage.csv")
 
     mean_vac = df_vac[['2021', '2022', '2023']].mean()
@@ -32,16 +32,16 @@ def plot_vaccination_coverage():
              marker='o', markersize=MARKER_SIZE, linewidth=LINE_WIDTH,
              label='Espírito Santo', color='blue')
 
-    plt.title("Cobertura Vacinal Tríplice Viral (2021–2023)", fontsize=FONT_TITLE)
+    plt.title("Cobertura Vacinal Tríplice Viral no Brasil (2021–2023)", fontsize=FONT_TITLE)
     plt.xlabel("Ano", fontsize=FONT_AXES)
     plt.ylabel("Cobertura (%)", fontsize=FONT_AXES)
 
-    yticks = list(range(0, 110, 10)) + [95]
+    yticks = list(range(0, 100, 10)) + [95] + [100]
     yticks = sorted(set(yticks))
     plt.yticks(yticks, fontsize=FONT_TICKS)
     plt.xticks(fontsize=FONT_TICKS)
 
-    plt.ylim(0, 105)
+    plt.ylim(0, 100)
     plt.legend(fontsize=FONT_LEGEND)
     plt.grid(True, linestyle='--', alpha=0.7)
 
@@ -49,7 +49,7 @@ def plot_vaccination_coverage():
     plt.show()
 
 
-def plot_cases():
+def plot_cases_brazil():
     df_cases = pd.read_csv("./data/confirmed_cases.csv")
 
     mean_cases = df_cases[['2021', '2022', '2023']].mean()
@@ -70,7 +70,7 @@ def plot_cases():
              marker='o', markersize=MARKER_SIZE, linewidth=LINE_WIDTH,
              label='Espírito Santo', color=color_es)
 
-    plt.title("Casos Confirmados de Sarampo/Rubéola (2021-2023)", fontsize=FONT_TITLE)
+    plt.title("Casos Confirmados de Sarampo/Rubéola no Brasil (2021-2023)", fontsize=FONT_TITLE)
     plt.ylabel("Casos Confirmados", fontsize=FONT_AXES)
     plt.xlabel("Ano", fontsize=FONT_AXES)
     plt.xticks(fontsize=FONT_TICKS)
@@ -82,7 +82,7 @@ def plot_cases():
     plt.show()
 
 
-def plot_cases_vs_vaccination():
+def plot_cases_vs_vaccination_brazil():
     df_vac = pd.read_csv("./data/vaccination_coverage.csv")
     df_cases = pd.read_csv("./data/confirmed_cases.csv")
 

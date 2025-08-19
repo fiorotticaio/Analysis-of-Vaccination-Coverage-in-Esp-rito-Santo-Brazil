@@ -1,21 +1,4 @@
-import pandas as pd
-import matplotlib.pyplot as plt
-
-# Carregar dados municipais
 df_es = pd.read_csv("./data/vaccination_coverage_es.csv")
-
-# Calcular média estadual por ano
-mean_es = df_es[['2021','2022','2023']].mean()
-
-plt.figure(figsize=(8,6))
-plt.plot(mean_es.index, mean_es.values, marker='o', linewidth=3, color='blue')
-plt.title("Cobertura Vacinal Média no Espírito Santo (2021–2023)")
-plt.xlabel("Ano")
-plt.ylabel("Cobertura (%)")
-plt.grid(True, linestyle='--', alpha=0.7)
-plt.show()
-
-
 
 
 df_es_2023 = df_es[['city','2022']].sort_values(by='2022', ascending=False)
