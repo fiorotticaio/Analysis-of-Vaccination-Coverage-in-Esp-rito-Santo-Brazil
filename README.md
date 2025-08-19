@@ -64,17 +64,17 @@ Below are the main figures summarizing the analysis. All images are available in
 
 **Vaccination Coverage in Brazil (2021-2023)**
 <p align="center">
-    <img src="./figures/coverage_brazil.png" width="45%">
+    <img src="./figures/coverage_brazil.png" width="100%">
 </p>
 
 **Confirmed Cases in Brazil (2021-2023)**
 <p align="center">
-    <img src="./figures/cases_brazil.png" width="45%">
+    <img src="./figures/cases_brazil.png" width="100%">
 </p>
 
 **Coverage vs. Cases in Brazil**
 <p align="center">
-    <img src="./figures/coverage_x_cases_brazil.png" width="45%">
+    <img src="./figures/coverage_x_cases_brazil.png" width="100%">
 </p>
 
 ---
@@ -83,7 +83,7 @@ Below are the main figures summarizing the analysis. All images are available in
 
 **Vaccination Coverage in Espírito Santo (2021-2023)**
 <p align="center">
-    <img src="./figures/coverage_es.png" width="45%">
+    <img src="./figures/coverage_es.png" width="100%">
 </p>
 
 ---
@@ -92,17 +92,17 @@ Below are the main figures summarizing the analysis. All images are available in
 
 **Coverage by City (2021)**
 <p align="center">
-    <img src="./figures/coverage_cities_es_2021.png" width="45%">
+    <img src="./figures/coverage_cities_es_2021.png" width="100%">
 </p>
 
 **Coverage by City (2022)**
 <p align="center">
-    <img src="./figures/coverage_cities_es_2022.png" width="45%">
+    <img src="./figures/coverage_cities_es_2022.png" width="100%">
 </p>
 
 **Coverage by City (2023)**
 <p align="center">
-    <img src="./figures/coverage_cities_es_2023.png" width="45%">
+    <img src="./figures/coverage_cities_es_2023.png" width="100%">
 </p>
 
 
