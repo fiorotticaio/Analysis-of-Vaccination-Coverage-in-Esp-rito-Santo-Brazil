@@ -98,7 +98,7 @@ def plot_coverage_es_cities_es(year: str):
     x_ticks = df_es_year['city']
     x_colors = ['limegreen' if v >= 95 else 'firebrick' for v in df_es_year[year]]
 
-    ticks = plt.xticks(ticks=range(len(x_ticks)), labels=x_ticks, rotation=90, fontsize=15)[1]
+    ticks = plt.xticks(ticks=range(len(x_ticks)), labels=x_ticks, rotation=90, fontsize=10)[1]
     for tick, color in zip(ticks, x_colors):
         tick.set_color(color)
 
@@ -107,6 +107,6 @@ def plot_coverage_es_cities_es(year: str):
 
     plt.grid(axis='y', linestyle='--', alpha=0.7)
 
-    save_figure("./figures/cobertura_cidades_es_2023.png")
-    plt.show()
+    save_figure(f"./figures/cobertura_cidades_es_{year}.png")
+    # plt.show()
 
