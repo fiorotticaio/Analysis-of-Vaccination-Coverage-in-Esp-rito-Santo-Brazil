@@ -11,6 +11,11 @@ LINE_WIDTH = 4
 MARKER_SIZE = 14
 
 
+def save_figure(filename: str, dpi: int = 300):
+    plt.tight_layout()
+    plt.savefig(filename, dpi=dpi, bbox_inches='tight')
+
+
 def plot_vaccination_coverage_brazil():
     df_vac = pd.read_csv("./data/vaccination_coverage.csv")
 
@@ -19,7 +24,7 @@ def plot_vaccination_coverage_brazil():
 
     mpl.rcParams['font.family'] = 'Times New Roman'
 
-    plt.figure(figsize=(10, 6))
+    plt.figure(figsize=(15, 8))
 
     plt.axhspan(95, 100, color='lightgreen', alpha=0.3)
     plt.text(2.11, 96, 'Faixa ideal', color='green',
@@ -45,7 +50,7 @@ def plot_vaccination_coverage_brazil():
     plt.legend(fontsize=FONT_LEGEND)
     plt.grid(True, linestyle='--', alpha=0.7)
 
-    plt.tight_layout()
+    save_figure("./figures/cobertura_brasil.png")
     plt.show()
 
 
@@ -61,7 +66,7 @@ def plot_cases_brazil():
     color_brasil = 'darkorange'
     color_es = 'purple'
 
-    plt.figure(figsize=(10, 6))
+    plt.figure(figsize=(15, 8))
 
     plt.plot(mean_cases.index, mean_cases.values,
              marker='o', markersize=MARKER_SIZE, linewidth=LINE_WIDTH,
@@ -78,7 +83,7 @@ def plot_cases_brazil():
     plt.grid(True, linestyle='--', alpha=0.7)
     plt.legend(fontsize=FONT_LEGEND)
 
-    plt.tight_layout()
+    save_figure("./figures/casos_brasil.png")
     plt.show()
 
 
@@ -93,7 +98,7 @@ def plot_cases_vs_vaccination_brazil():
 
     mpl.rcParams['font.family'] = 'Times New Roman'
 
-    plt.figure(figsize=(12, 8))
+    plt.figure(figsize=(15, 8))
 
     destaque_ufs = ['Amapá', 'Pará', 'Acre', 'Espírito Santo']
 
@@ -115,5 +120,5 @@ def plot_cases_vs_vaccination_brazil():
     plt.title("Cobertura Vacinal vs Casos Confirmados por Estado", fontsize=FONT_TITLE)
     plt.grid(True, linestyle='--', alpha=0.7)
 
-    plt.tight_layout()
+    save_figure("./figures/coberturaXcasos_brasil.png")
     plt.show()

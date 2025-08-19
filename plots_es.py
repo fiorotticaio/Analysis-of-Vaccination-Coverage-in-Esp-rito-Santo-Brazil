@@ -12,6 +12,12 @@ LINE_WIDTH = 4
 MARKER_SIZE = 14
 
 
+def save_figure(filename: str, dpi: int = 300):
+    # plt.tight_layout()
+    plt.subplots_adjust(bottom=0.30)
+    plt.savefig(filename, dpi=dpi, bbox_inches='tight')
+
+
 def plot_vaccination_coverage_es():
     df_es = pd.read_csv("./data/vaccination_coverage_es.csv")
 
@@ -36,7 +42,7 @@ def plot_vaccination_coverage_es():
         mun_low_name = None
 
     mpl.rcParams['font.family'] = 'Times New Roman'
-    plt.figure(figsize=(10, 6))
+    plt.figure(figsize=(15, 8))
 
     plt.axhspan(95, 100, color='lightgreen', alpha=0.3)
     plt.text(2.11, 96, 'Faixa ideal', color='green',
@@ -68,7 +74,8 @@ def plot_vaccination_coverage_es():
 
     plt.legend(fontsize=FONT_LEGEND)
     plt.grid(True, linestyle='--', alpha=0.7)
-    plt.tight_layout()
+
+    save_figure("./figures/cobertura_es.png")
     plt.show()
 
 
@@ -78,7 +85,7 @@ def plot_coverage_es_cities_es(year: str):
     df_es_year = df_es[['city', year]].sort_values(by=year, ascending=False)
 
     mpl.rcParams['font.family'] = 'Times New Roman'
-    plt.figure(figsize=(16, 6))
+    plt.figure(figsize=(15, 8))
 
     colors = ['green' if v >= 95 else 'red' for v in df_es_year[year]]
     plt.bar(df_es_year['city'], df_es_year[year], color=colors, width=0.8)
@@ -100,6 +107,6 @@ def plot_coverage_es_cities_es(year: str):
 
     plt.grid(axis='y', linestyle='--', alpha=0.7)
 
-    plt.subplots_adjust(bottom=0.30)
+    save_figure("./figures/cobertura_cidades_es_2023.png")
     plt.show()
 
